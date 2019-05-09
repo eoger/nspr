@@ -937,6 +937,7 @@ pr_LoadLibraryByPathname(const char *name, PRIntn flags)
 
   unlock:
     if (result == NULL) {
+        PR_LogPrint("Could not load the following lib: %s", lm->name);
         PR_SetError(PR_LOAD_LIBRARY_ERROR, oserr);
         DLLErrorInternal(oserr);  /* sets error text */
     }
