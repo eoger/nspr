@@ -29,7 +29,6 @@ INCLUDES = -I$(dist_includedir)
 HEADERS = $(wildcard $(srcdir)/*.h)
 
 CSRCS = \
-	plvrsion.c \
 	$(NULL)
 
 CXXSRCS = \
@@ -123,14 +122,6 @@ $(TINC):
 	    true; \
 	fi
 	@$(ECHO) '#define _PRODUCTION "$(PROD)"' >> $(TINC)
-
-
-$(OBJDIR)/plvrsion.$(OBJ_SUFFIX): plvrsion.c $(TINC)
-ifeq ($(OS_ARCH), WINNT)
-	$(CC) -o $@ -c $(CFLAGS) -I$(OBJDIR) $<
-else
-	$(CC) -o $@ -c $(CFLAGS) -I$(OBJDIR) $<
-endif
 #
 # Version information generation (end)
 #

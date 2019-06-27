@@ -19,7 +19,6 @@ INCLUDES = -I$(dist_includedir) -I$(topsrcdir)/pr/include
 CSRCS = \
 	plarena.c \
 	plhash.c \
-	plvrsion.c \
 	$(NULL)
 
 HEADERS = \
@@ -121,14 +120,6 @@ $(TINC):
 	    true; \
 	fi
 	@$(ECHO) '#define _PRODUCTION "$(PROD)"' >> $(TINC)
-
-
-$(OBJDIR)/plvrsion.$(OBJ_SUFFIX): plvrsion.c $(TINC)
-ifeq ($(NS_USE_GCC)_$(OS_ARCH),_WINNT)
-	$(CC) -Fo$@ -c $(CFLAGS) -I$(OBJDIR) $<
-else
-	$(CC) -o $@ -c $(CFLAGS) -I$(OBJDIR) $<
-endif
 #
 # Version information generation (end)
 #

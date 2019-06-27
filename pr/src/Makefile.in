@@ -186,7 +186,6 @@ EXTRA_LIBS += $(OS_LIBS)
 #
 
 OBJS = \
-    $(OBJDIR)/prvrsion.$(OBJ_SUFFIX) \
     io/$(OBJDIR)/prfdcach.$(OBJ_SUFFIX) \
     io/$(OBJDIR)/prmwait.$(OBJ_SUFFIX) \
     io/$(OBJDIR)/prmapopt.$(OBJ_SUFFIX) \
@@ -333,14 +332,6 @@ $(TINC):
 	    true; \
 	fi
 	@$(ECHO) '#define _PRODUCTION "$(PROD)"' >> $(TINC)
-
-
-$(OBJDIR)/prvrsion.$(OBJ_SUFFIX): prvrsion.c $(TINC)
-ifeq ($(NS_USE_GCC)_$(OS_ARCH),_WINNT)
-	$(CC) -Fo$@ -c $(CFLAGS) -I$(OBJDIR) $<
-else
-	$(CC) -o $@ -c $(CFLAGS) -I$(OBJDIR) $<
-endif
 #
 # Version information generation (end)
 #
